@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-  REGISTRY: ghcr.io/${{ github.repository_owner }}
+  REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   IMAGE_TAGS: latest ${{ github.run_number }}
   REGISTRY_USER: ${{ github.actor }}
