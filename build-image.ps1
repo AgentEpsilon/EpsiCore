@@ -1,0 +1,2 @@
+podman build -t epsicore-bootc .
+podman run --rm -it --privileged --pull=newer --security-opt label=type:unconfined_t -v c:/Code/EpsiCore/output:/output -v /var/lib/containers/storage:/var/lib/containers/storage -v c:/Code/EpsiCore/config.json:/config.json:ro quay.io/centos-bootc/bootc-image-builder:latest --type vhd --rootfs btrfs --local localhost/epsicore-bootc:latest

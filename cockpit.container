@@ -1,0 +1,18 @@
+[Unit]
+Description=Cockpit web service quadlet
+After=network-online.target
+
+[Container]
+Image=quay.io/cockpit/ws:latest
+AutoUpdate=registry
+PublishPort=9090:9090/tcp
+Timezone=US/Pacific
+Pull=newer
+
+[Service]
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=default.target
