@@ -7,17 +7,18 @@ Image=docker.io/jellyfin/jellyfin:latest
 AutoUpdate=registry
 PublishPort=8096:8096/tcp
 UserNS=keep-id
-Volume=/var/mnt/data/Jellyfin/config:/config:Z
-Volume=/var/mnt/data/Jellyfin/cache:/cache:Z
-Volume=/var/mnt/data/Media:/media:Z
+Volume=/etc/Jellyfin/config:/config:Z
+Volume=/var/cache/Jellyfin/cache:/cache:Z
+Volume=/var/lib/Jellyfin/media:/media:Z
 # hardware acceleration
 AddDevice=/dev/dri/:/dev/dri/
 Timezone=US/Pacific
 Pull=newer
 
 [Service]
-User=jellyfin
-DynamicUser=yes
+StateDirectory=Jellyfin/media
+CacheDirectory=Jellyfin/cache
+ConfigurationDirectory=Jellyfin/config
 # Inform systemd of additional exit status
 SuccessExitStatus=0 143
 Restart=always
