@@ -22,4 +22,4 @@ RestartSec=30
 
 [Install]
 # Start by default on boot
-WantedBy=default.target
+WantedBy=multi-user.target

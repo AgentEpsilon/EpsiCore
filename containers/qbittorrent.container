@@ -1,0 +1,28 @@
+[Unit]
+Description=qBittorrent quadlet
+After=network-online.target
+
+[Container]
+Image=lscr.io/linuxserver/qbittorrent:latest
+AutoUpdate=registry
+PublishPort=8080:8080
+PublishPort=6881:6881
+PublishPort=6881:6881/udp
+Environment=WEBUI_PORT=8080
+Environment=TORRENTING_PORT=6881
+UserNS=keep-id
+Volume=/etc/qBittorrent/config:/config:Z
+Volume=/var/lib/arr/torrents:/downloads:z
+Timezone=US/Pacific
+Pull=newer
+Network=arr.network
+
+[Service]
+StateDirectory=arr/torrents
+ConfigurationDirectory=qBittorrent/config
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target

@@ -1,0 +1,25 @@
+[Unit]
+Description=Radarr quadlet
+After=network-online.target
+
+[Container]
+Image=ghcr.io/hotio/radarr:latest
+AutoUpdate=registry
+PublishPort=7878:7878/tcp
+UserNS=keep-id
+Volume=/etc/localtime:/etc/localtime:ro,z
+Volume=/etc/Radarr/config:/config:Z
+Volume=/var/lib/arr:/data:Z
+Timezone=US/Pacific
+Pull=newer
+Network=arr.network
+
+[Service]
+StateDirectory=arr
+ConfigurationDirectory=Radarr/config
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target

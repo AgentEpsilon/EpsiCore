@@ -1,13 +1,12 @@
 FROM quay.io/fedora/fedora-bootc:42
 
-RUN echo "epsicore" > /etc/hostname
+RUN echo epsi > /etc/hostname
+RUN ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime
 
 # Cockpit
 RUN dnf -y install cockpit-system cockpit-networkmanager cockpit-podman cockpit-selinux cockpit-machines cockpit-files
 
-COPY jellyfin.container /home/jellyfin/.config/containers/systemd/jellyfin.container
-COPY cockpit.container /usr/share/containers/systemd/cockpit.container
-COPY technitium-dns.container /usr/share/containers/systemd/technitium-dns.container
+COPY containers/ /usr/share/containers/systemd/
 
 # Disable systemd-resolved in favor of technitium
 RUN systemctl disable systemd-resolved

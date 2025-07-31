@@ -1,0 +1,25 @@
+[Unit]
+Description=Sonarr quadlet
+After=network-online.target
+
+[Container]
+Image=ghcr.io/hotio/sonarr:latest
+AutoUpdate=registry
+PublishPort=8989:8989/tcp
+UserNS=keep-id
+Volume=/etc/localtime:/etc/localtime:ro,z
+Volume=/etc/Sonarr/config:/config:Z
+Volume=/var/lib/arr:/data:z
+Timezone=US/Pacific
+Pull=newer
+Network=arr.network
+
+[Service]
+StateDirectory=arr
+ConfigurationDirectory=Sonarr/config
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target

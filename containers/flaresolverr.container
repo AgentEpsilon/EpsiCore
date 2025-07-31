@@ -1,13 +1,15 @@
 [Unit]
-Description=Cockpit web service quadlet
+Description=Flaresolverr quadlet
 After=network-online.target
 
 [Container]
-Image=quay.io/cockpit/ws:latest
+Image=ghcr.io/flaresolverr/flaresolverr
 AutoUpdate=registry
-PublishPort=9090:9090/tcp
+PublishPort=8191:8191
+UserNS=keep-id
 Timezone=US/Pacific
 Pull=newer
+Network=arr.network
 
 [Service]
 Restart=always
@@ -15,4 +17,4 @@ RestartSec=30
 
 [Install]
 # Start by default on boot
-WantedBy=default.target
+WantedBy=multi-user.target
