@@ -12,6 +12,8 @@ COPY containers/ /usr/share/containers/systemd/
 RUN systemctl disable systemd-resolved
 COPY resolv.conf /etc/resolv.conf
 
+COPY blocky.yml /etc/blocky.yml
+
 # Enable auto-update of container images
 RUN systemctl enable podman-auto-update.service
 

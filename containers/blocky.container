@@ -1,0 +1,25 @@
+[Unit]
+Description=Blocky DNS quadlet
+After=network-online.target
+
+[Container]
+Image=ghcr.io/0xerr0r/blocky:latest
+AutoUpdate=registry
+PublishPort=4000:4000/tcp
+PublishPort=53:53/tcp
+PublishPort=53:53/udp
+UserNS=keep-id
+Volume=/etc/localtime:/etc/localtime:ro
+Volume=/etc/blocky.yml:/app/config.yml:ro
+Timezone=US/Pacific
+Pull=newer
+
+[Service]
+# Inform systemd of additional exit status
+SuccessExitStatus=0 143
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target
