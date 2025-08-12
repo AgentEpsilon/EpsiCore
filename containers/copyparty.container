@@ -1,0 +1,27 @@
+[Unit]
+Description=Copyparty file server quadlet
+After=network-online.target
+
+[Container]
+Image=ghcr.io/9001/copyparty-ac:latest
+AutoUpdate=registry
+PublishPort=3923:3923
+UserNS=keep-id
+Volume=/etc:/w:z
+Volume=/etc/copyparty.conf:/cfg/copyparty.conf:z
+Pull=newer
+HealthCmd=["CMD-SHELL", "wget --spider -q 127.0.0.1:3923/?reset=/._"]
+HealthInterval=1m
+HealthTimeout=2s
+HealthRetries=5
+HealthStartPeriod=15s
+
+[Service]
+# Inform systemd of additional exit status
+SuccessExitStatus=0 143
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target
