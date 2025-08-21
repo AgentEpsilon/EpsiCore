@@ -6,6 +6,8 @@ RUN ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime
 # Cockpit
 RUN dnf -y install cockpit-system cockpit-networkmanager cockpit-podman cockpit-selinux cockpit-machines cockpit-files
 
+COPY var-mnt-ssd.mount /usr/lib/systemd/system/var-mnt-ssd.mount
+
 COPY containers/ /usr/share/containers/systemd/
 
 # Disable systemd-resolved in favor of technitium

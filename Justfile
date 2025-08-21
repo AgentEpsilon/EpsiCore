@@ -27,7 +27,7 @@ build-iso-upstream:
         -v /var/lib/containers/storage:/var/lib/containers/storage \
         -v ./config.json:/config.json:ro \
         quay.io/centos-bootc/bootc-image-builder:latest \
-        --type qcow2 --rootfs btrfs --use-librepo=true \
+        --type anaconda-iso --rootfs btrfs --use-librepo=true \
         ghcr.io/agentepsilon/epsicore:latest
 
 qemu:

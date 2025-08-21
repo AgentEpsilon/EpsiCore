@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount external SSD
+
+[Mount]
+What=/dev/disk/by-uuid/da4b6337-4c47-4ed7-a7d3-9ad49504ef37
+Where=/var/mnt/ssd
+Type=btrfs
+
+[Install]
+WantedBy=multi-user.target
