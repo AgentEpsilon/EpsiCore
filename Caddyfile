@@ -1,0 +1,26 @@
+epsicore.home {
+	tls internal
+	root * /www
+	encode
+	file_server
+}
+
+cockpit.epsicore.home {
+	tls internal
+	reverse_proxy systemd-cockpit:9090
+}
+
+files.epsicore.home {
+	tls internal
+	reverse_proxy systemd-copyparty:3293
+}
+
+media.epsicore.home {
+	tls internal
+	reverse_proxy systemd-jellyfin:8096
+}
+
+hello.epsicore.home {
+	tls internal
+	respond "Hello World!"
+}
