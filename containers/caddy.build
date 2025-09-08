@@ -1,3 +1,4 @@
 [Build]
 ImageTag=localhost/caddy
 File=./caddy.Containerfile
+SetWorkingDirectory=unit
