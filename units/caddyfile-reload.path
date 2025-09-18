@@ -1,0 +1,8 @@
+[Unit]
+Description=Caddyfile change watcher
+
+[Path]
+PathChanged=/etc/Caddyfile
+
+[Install]
+WantedBy=multi-user.target

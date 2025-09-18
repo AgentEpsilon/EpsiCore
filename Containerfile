@@ -6,7 +6,7 @@ RUN ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime
 # Cockpit
 RUN dnf -y install cockpit-system cockpit-networkmanager cockpit-podman cockpit-selinux cockpit-machines cockpit-files
 
-COPY var-mnt-ssd.mount /usr/lib/systemd/system/var-mnt-ssd.mount
+COPY units/ /usr/lib/systemd/system/
 
 COPY containers/ /usr/share/containers/systemd/
 
@@ -16,7 +16,9 @@ COPY resolv.conf /etc/resolv.conf
 
 COPY blocky.yml /etc/blocky.yml
 COPY copyparty.conf /etc/copyparty.conf
-COPY Caddyfile /etc/Caddy/Caddyfile
+COPY Caddyfile /etc/Caddyfile
+
+COPY www/ /etc/www/
 
 # Enable auto-update of container images
 RUN systemctl enable podman-auto-update.timer

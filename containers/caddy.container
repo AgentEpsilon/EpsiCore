@@ -9,8 +9,8 @@ PublishPort=80:80
 PublishPort=443:443
 PublishPort=443:443/udp
 UserNS=keep-id
-Volume=/etc/Caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-Volume=/etc/Caddy/www:/www:ro
+Volume=/etc/Caddyfile:/etc/caddy/Caddyfile:ro
+Volume=/etc/www:/www:ro
 Volume=/var/lib/Caddy/data:/data:Z
 Volume=/etc/Caddy/config:/config:Z
 Timezone=US/Pacific
@@ -18,7 +18,7 @@ Pull=newer
 
 [Service]
 StateDirectory=Caddy/data
-ConfigurationDirectory=Caddy/config Caddy/www
+ConfigurationDirectory=Caddy/config
 Restart=always
 RestartSec=30
 
