@@ -6,7 +6,13 @@ epsicore.home {
 
 	respond /hello "Hello World!"
 
-	reverse_proxy /cockpit/* systemd-cockpit:9090
-	reverse_proxy /files/* systemd-copyparty:3293
-	reverse_proxy /media/* systemd-jellyfin:8096
+	handle_path /cockpit/* {
+		reverse_proxy systemd-cockpit:9090
+	}
+	handle_path /files/* {
+		reverse_proxy systemd-copyparty:3923
+	}
+	handle_path /media/* {
+		reverse_proxy /media/* systemd-jellyfin:8096
+	}
 }
