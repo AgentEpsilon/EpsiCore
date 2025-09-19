@@ -9,16 +9,19 @@ PublishPort=80:80
 PublishPort=443:443
 PublishPort=443:443/udp
 UserNS=keep-id
+Secret=cloudflare-api-token,type=env,target=CLOUDFLARE_API_TOKEN
 Volume=/etc/Caddyfile:/etc/caddy/Caddyfile:ro
 Volume=/etc/www:/www:ro
 Volume=/var/lib/Caddy/data:/data:Z
 Volume=/etc/Caddy/config:/config:Z
+Volume=/var/log/Caddy:/var/log/caddy:Z
 Timezone=US/Pacific
 Pull=newer
 
 [Service]
 StateDirectory=Caddy/data
 ConfigurationDirectory=Caddy/config
+LogsDirectory=Caddy
 Restart=always
 RestartSec=30
 
