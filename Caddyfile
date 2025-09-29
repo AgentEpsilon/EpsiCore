@@ -1,3 +1,18 @@
+{
+	email miller.evan815@gmail.com
+	dynamic_dns {
+		provider cloudflare {env.CLOUDFLARE_API_TOKEN}
+		domains {
+			evanmiller.dev
+		}
+		dynamic_domains
+	}
+	log {
+		output file /var/log/caddy/caddy.log
+		format json
+	}
+}
+
 epsicore.home {
 	tls internal
 	root * /www
@@ -14,21 +29,6 @@ epsicore.home {
 	}
 	handle_path /media/* {
 		reverse_proxy /media/* systemd-jellyfin:8096
-	}
-}
-
-{
-	email miller.evan815@gmail.com
-	dynamic_dns {
-		provider cloudflare {env.CLOUDFLARE_API_TOKEN}
-		domains {
-			evanmiller.dev @ auth home cockpit media files
-		}
-		dynamic_domains
-	}
-	log {
-		output file /var/log/caddy/caddy.log
-		format json
 	}
 }
 
@@ -57,7 +57,7 @@ evanmiller.dev {
 
 auth.evanmiller.dev {
 	import defaults auth.evanmiller.dev
-	reverse-proxy voidauth:3000
+	reverse_proxy voidauth:3000
 }
 
 home.evanmiller.dev {
@@ -66,7 +66,7 @@ home.evanmiller.dev {
 		uri /api/authz/forward-auth
 		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
 	}
-	reverse-proxy homepage:3000
+	reverse_proxy homepage:3000
 }
 
 cockpit.evanmiller.dev {
@@ -75,7 +75,7 @@ cockpit.evanmiller.dev {
 		uri /api/authz/forward-auth
 		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
 	}
-	reverse-proxy cockpit:9090
+	reverse_proxy cockpit:9090
 }
 
 media.evanmiller.dev {
@@ -84,7 +84,7 @@ media.evanmiller.dev {
 		uri /api/authz/forward-auth
 		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
 	}
-	reverse-proxy jellyfin:8096
+	reverse_proxy jellyfin:8096
 }
 
 files.evanmiller.dev {
@@ -93,7 +93,7 @@ files.evanmiller.dev {
 		uri /api/authz/forward-auth
 		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
 	}
-	reverse-proxy copyparty:3923
+	reverse_proxy copyparty:3923
 }
 
 # catchall
