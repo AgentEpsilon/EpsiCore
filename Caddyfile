@@ -54,3 +54,44 @@ evanmiller.dev {
 	import defaults evanmiller.dev
 	respond "Hello, {http.request.remote}!"
 }
+
+auth.evanmiller.dev {
+	import defaults auth.evanmiller.dev
+	reverse-proxy voidauth:3000
+}
+
+home.evanmiller.dev {
+	import defaults home.evanmiller.dev
+	forward_auth voidauth:3000 {
+		uri /api/authz/forward-auth
+		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+	}
+	reverse-proxy homepage:3000
+}
+
+cockpit.evanmiller.dev {
+	import defaults cockpit.evanmiller.dev
+	forward_auth voidauth:3000 {
+		uri /api/authz/forward-auth
+		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+	}
+	reverse-proxy cockpit:9090
+}
+
+media.evanmiller.dev {
+	import defaults media.evanmiller.dev
+	forward_auth voidauth:3000 {
+		uri /api/authz/forward-auth
+		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+	}
+	reverse-proxy jellyfin:8096
+}
+
+files.evanmiller.dev {
+	import defaults files.evanmiller.dev
+	forward_auth voidauth:3000 {
+		uri /api/authz/forward-auth
+		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+	}
+	reverse-proxy copyparty:3923
+}

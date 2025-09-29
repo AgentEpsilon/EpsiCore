@@ -1,0 +1,17 @@
+[Unit]
+Description=VoidAuth Postgres db quadlet
+
+[Container]
+Image=docker.io/library/postgres:18
+AutoUpdate=registry
+UserNS=keep-id
+Pull=newer
+Volume=/var/lib/voidauth-db:/var/lib/postgresql/data:Z
+Secret=voidauth-db-password,type=env,target=POSTGRES_PASSWORD
+
+[Service]
+StateDirectory=voidauth-db
+# Inform systemd of additional exit status
+SuccessExitStatus=0 143
+Restart=always
+RestartSec=30

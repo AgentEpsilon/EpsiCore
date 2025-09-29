@@ -1,0 +1,34 @@
+[Unit]
+Description=VoidAuth IdP quadlet
+Wants=voidauth-db.service
+After=voidauth-db.service
+
+[Container]
+Image=ghcr.io/voidauth/voidauth:latest
+AutoUpdate=registry
+UserNS=keep-id
+Pull=newer
+Volume=/etc/voidauth:/app/config:Z
+Environment=APP_URL=https://auth.evanmiller.dev
+Environment=DB_HOST=voidauth-db
+Environment=DEFAULT_REDIRECT=https://home.evanmiller.dev
+Secret=voidauth-storage-key,type=env,target=STORAGE_KEY
+Secret=voidauth-db-password,type=env,target=DB_PASSWORD
+
+# Homepage discovery
+Label=homepage.group=Services
+Label=homepage.name=VoidAuth
+Label=homepage.icon=https://raw.githubusercontent.com/voidauth/voidauth/refs/heads/main/docs/logo_full_text.svg
+Label=homepage.href=https://auth.evanmiller.dev
+Label=homepage.description=Identity Provider
+
+[Service]
+ConfigurationDirectory=voidauth
+# Inform systemd of additional exit status
+SuccessExitStatus=0 143
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target

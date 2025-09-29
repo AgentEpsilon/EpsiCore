@@ -15,6 +15,13 @@ AddDevice=/dev/dri/:/dev/dri/
 Timezone=US/Pacific
 Pull=newer
 
+# Homepage discovery
+Label=homepage.group=Services
+Label=homepage.name=Jellyfin
+Label=homepage.icon=jellyfin
+Label=homepage.href=https://media.evanmiller.dev
+Label=homepage.description=Media Server
+
 [Service]
 StateDirectory=Jellyfin/media
 CacheDirectory=Jellyfin/cache

@@ -10,10 +10,6 @@ COPY units/ /usr/lib/systemd/system/
 
 COPY containers/ /usr/share/containers/systemd/
 
-# Disable systemd-resolved in favor of technitium
-RUN systemctl disable systemd-resolved
-COPY resolv.conf /etc/resolv.conf
-
 COPY blocky.yml /etc/blocky.yml
 COPY copyparty.conf /etc/copyparty.conf
 COPY Caddyfile /etc/Caddyfile

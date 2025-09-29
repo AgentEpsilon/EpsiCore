@@ -16,6 +16,13 @@ HealthTimeout=2s
 HealthRetries=5
 HealthStartPeriod=15s
 
+# Homepage discovery
+Label=homepage.group=Services
+Label=homepage.name=Copyparty
+Label=homepage.icon=copyparty
+Label=homepage.href=https://files.evanmiller.dev
+Label=homepage.description=File Server
+
 [Service]
 # Inform systemd of additional exit status
 SuccessExitStatus=0 143

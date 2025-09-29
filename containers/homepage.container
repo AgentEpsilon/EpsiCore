@@ -1,0 +1,22 @@
+[Unit]
+Description=Homepage quadlet
+
+[Container]
+Image=ghcr.io/gethomepage/homepage:latest
+AutoUpdate=registry
+UserNS=keep-id
+Pull=newer
+Volume=/etc/homepage:/app/config:Z
+Volume=/var/run/docker.sock:/var/run/docker.sock:ro # for service discovery
+Environment=HOMEPAGE_ALLOWED_HOSTS=home.evanmiller.dev
+
+[Service]
+ConfigurationDirectory=homepage
+# Inform systemd of additional exit status
+SuccessExitStatus=0 143
+Restart=always
+RestartSec=30
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target

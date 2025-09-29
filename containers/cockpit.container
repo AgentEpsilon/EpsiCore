@@ -9,6 +9,13 @@ PublishPort=9090:9090/tcp
 Timezone=US/Pacific
 Pull=newer
 
+# Homepage discovery
+Label=homepage.group=Admin
+Label=homepage.name=Cockpit
+Label=homepage.icon=cockpit
+Label=homepage.href=https://cockpit.evanmiller.dev
+Label=homepage.description=Server Dashboard
+
 [Service]
 Restart=always
 RestartSec=30
