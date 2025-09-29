@@ -4,7 +4,7 @@ After=network-online.target
 
 [Container]
 Image=caddy.build
-AutoUpdate=registry
+AutoUpdate=localhost
 PublishPort=80:80
 PublishPort=443:443
 PublishPort=443:443/udp
