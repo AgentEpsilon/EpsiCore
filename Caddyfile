@@ -95,3 +95,14 @@ files.evanmiller.dev {
 	}
 	reverse-proxy copyparty:3923
 }
+
+# catchall
+:80, :443 {
+	log {
+		output file /var/log/caddy/catchall.log
+		format json
+	}
+	respond "Access denied" 403 {
+		close
+	}
+}

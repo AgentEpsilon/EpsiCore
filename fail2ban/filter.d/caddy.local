@@ -1,0 +1,3 @@
+[Definition]
+failregex = "client_ip":"<HOST>"(?:.*)"status":(?:403|404)
+datepattern = "ts":{Epoch}

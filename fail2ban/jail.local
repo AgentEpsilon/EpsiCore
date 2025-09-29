@@ -1,0 +1,5 @@
+[caddy]
+enabled = true
+port = http,https
+logpath = /var/log/caddy/*.log
+maxretry = 10
