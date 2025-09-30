@@ -7,7 +7,8 @@ AutoUpdate=registry
 UserNS=keep-id
 Pull=newer
 Volume=/etc/homepage:/app/config:Z
-Volume=/var/run/docker.sock:/var/run/docker.sock:ro # for service discovery
+# for service discovery
+Volume=/var/run/docker.sock:/var/run/docker.sock:ro
 Environment=HOMEPAGE_ALLOWED_HOSTS=home.evanmiller.dev
 
 [Service]
