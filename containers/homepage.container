@@ -11,6 +11,8 @@ Volume=/etc/homepage:/app/config:Z
 # for service discovery
 Volume=/run/podman/podman.sock:/run/podman/podman.sock:ro,z
 Environment=HOMEPAGE_ALLOWED_HOSTS=home.evanmiller.dev
+# disable selinux so it can access podman.sock
+SecurityLabelDisable=true
 
 [Service]
 ConfigurationDirectory=homepage
