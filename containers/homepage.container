@@ -1,5 +1,6 @@
 [Unit]
 Description=Homepage quadlet
+Requires=podman.socket
 
 [Container]
 Image=ghcr.io/gethomepage/homepage:latest
@@ -8,7 +9,7 @@ UserNS=keep-id
 Pull=newer
 Volume=/etc/homepage:/app/config:Z
 # for service discovery
-Volume=/var/run/docker.sock:/var/run/docker.sock:ro
+Volume=/run/podman/podman.sock:/run/podman/podman.sock:ro,z
 Environment=HOMEPAGE_ALLOWED_HOSTS=home.evanmiller.dev
 
 [Service]

@@ -19,5 +19,7 @@ COPY Caddyfile /etc/Caddyfile
 
 COPY www/ /etc/www/
 
+COPY homepage/ /etc/homepage/
+
 # Enable auto-update of container images
 RUN systemctl enable podman-auto-update.timer

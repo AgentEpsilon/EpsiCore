@@ -1,0 +1,2 @@
+podman:
+  socket: /run/podman/podman.sock
