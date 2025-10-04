@@ -75,7 +75,7 @@ cockpit.evanmiller.dev {
 		uri /api/authz/forward-auth
 		copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
 	}
-	reverse_proxy cockpit:9090
+	reverse_proxy host.containers.internal:9090
 }
 
 media.evanmiller.dev {

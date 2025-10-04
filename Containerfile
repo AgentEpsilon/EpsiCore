@@ -5,6 +5,7 @@ RUN ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime
 
 # Cockpit
 RUN dnf -y install cockpit-system cockpit-networkmanager cockpit-podman cockpit-selinux cockpit-machines cockpit-files
+RUN systemctl enable cockpit.socket
 
 RUN dnf -y install fail2ban && systemctl enable fail2ban
 COPY fail2ban/ /etc/fail2ban/
